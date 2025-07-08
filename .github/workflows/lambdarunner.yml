@@ -46,7 +46,9 @@ jobs:
 
     # Build the SAM application
     - name: Build SAM application
-      run: sam build
+      run: |
+        cd server/alfa_omega_lambda
+        sam build
 
     # Deploy the SAM application
     - name: Deploy SAM application
