@@ -1,6 +1,6 @@
 import json
 import requests
-
+from controllers.math_controller import calculate
 
 def lambda_handler(event, context):
     """Sample pure Lambda function
@@ -27,7 +27,7 @@ def lambda_handler(event, context):
     try:
         ip = requests.get("http://checkip.amazonaws.com/")
     except requests.RequestException as e:
-        # Send some context about this error to Lambda Logs
+        # Send some context about this error to Lambda Logsd
         print(e)
 
         raise e
@@ -39,3 +39,6 @@ def lambda_handler(event, context):
             "location": ip.text.replace("\n", "")
         }),
     }
+
+def calculate(event, context):
+    return calculate(event, context)
