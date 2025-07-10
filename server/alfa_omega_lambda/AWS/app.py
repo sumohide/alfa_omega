@@ -1,6 +1,6 @@
 import json
 import requests
-from controllers.math_controller import calculate
+from controllers.math_controller import calculate as math_calculate
 
 def lambda_handler(event, context):
     """Sample pure Lambda function
@@ -41,4 +41,24 @@ def lambda_handler(event, context):
     }
 
 def calculate(event, context):
-    return calculate(event, context)
+    try:
+        body = event.get("body")
+        if body:
+            data = json.loads(body)
+            expression = data.get("expression")
+            if expression is not None:
+                result = math_calculate(expression)
+                return {
+                    "statusCode": 200,
+                    "body": json.dumps(result)
+                }
+        return {
+            "statusCode": 400,
+            "body": json.dumps({"error": "Missing 'expression' in request body"})
+        }
+    except Exception as e:
+        print(f"Error calculating expression: {e}")
+        return {
+            "statusCode": 400,
+            "body": json.dumps({"error": str(e)})
+        }

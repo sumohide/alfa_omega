@@ -13,8 +13,8 @@ Resources:
   HelloWorldFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
-      CodeUri: AWS/
-      Handler: app.lambda_handler
+      CodeUri: ../alfa_omega_lambda/
+      Handler: AWS/app.lambda_handler
       Runtime: python3.12
       Architectures:
         - x86_64
@@ -27,8 +27,8 @@ Resources:
   CalculateFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: AWS/
-      Handler: app.calculate
+      CodeUri: ../alfa_omega_lambda/
+      Handler: AWS/app.calculate
       Runtime: python3.12
       Architectures:
         - x86_64
@@ -45,7 +45,7 @@ Outputs:
   # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
   HelloWorldApi:
     Description: API Gateway endpoint URL for Prod stage for Hello World function
-    Value: !Sub https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/
+    Value: !Sub https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/hello/
   HelloWorldFunction:
     Description: Hello World Lambda Function ARN
     Value: !GetAtt HelloWorldFunction.Arn

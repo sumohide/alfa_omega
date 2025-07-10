@@ -1,12 +1,11 @@
 
 
 
-def calculate(request):
+def calculate(expression):
     """
     Calculate the result of a mathematical expression.
     """
-    expression = request.get_json().get('expression', '')
-    
+    print(f"Received expression: {expression}")
     if not expression:
         return {'error': 'No expression provided'}, 400
     
